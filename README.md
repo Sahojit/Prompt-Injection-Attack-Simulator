@@ -1,127 +1,166 @@
-# Prompt Injection Attack Simulator for LLM Security
+# 🔐 Prompt Injection Attack Simulator
 
-A production-grade local LLM security testing framework powered by **Ollama**. Simulates prompt injection attacks and evaluates defense mechanisms — no external APIs required.
+A simple local LLM security project that simulates **prompt injection attacks** and evaluates how well a defense system can block them.
+
+Built using local models via Ollama — no external APIs required.
 
 ---
 
-## Quick Start
+# 🚀 What This Project Does
 
-### 1. Prerequisites
+This system:
+
+* Simulates prompt injection attacks (e.g., "ignore previous instructions")
+* Sends them to a local LLM
+* Applies a defense filter
+* Measures how many attacks are blocked
+
+👉 In short:
+**Attack → Defense → Result → Evaluation**
+
+---
+
+# 🧱 Tech Stack
+
+* Python
+* FastAPI (backend)
+* Streamlit (dashboard)
+* Ollama (local LLM runtime)
+
+---
+
+# ⚙️ Setup (One-Time)
+
+## 1. Install Ollama
+
+Download and install Ollama.
+
+Then run:
+
 ```bash
-# Install Ollama
-brew install ollama   # macOS
-# Then pull models:
 ollama pull llama3
-ollama pull mistral
-ollama serve          # keep running in a terminal
+ollama serve
 ```
 
-### 2. Setup
+Keep this running.
+
+---
+
+## 2. Clone the Repo
+
 ```bash
-cd "Prompt Injection Attack Simulator for LLM Security"
-/opt/homebrew/bin/python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+git clone https://github.com/Sahojit/Prompt-Injection-Attack-Simulator.git
+cd Prompt-Injection-Attack-Simulator
 ```
 
-### 3. Start
-```bash
-# Option A: use the startup script
-bash scripts/start.sh
+---
 
-# Option B: manual
-uvicorn src.api.main:app --reload &
+## 3. Create Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Mac/Linux
+
+# Windows:
+.venv\Scripts\activate
+```
+
+---
+
+## 4. Install Dependencies
+
+```bash
+pip install -r requirements_simple.txt
+```
+
+---
+
+# ▶️ Run the Project
+
+## Start Backend
+
+```bash
+uvicorn src.api.main:app --reload
+```
+
+## Start Dashboard
+
+```bash
 streamlit run dashboard/app.py
 ```
 
-- **API Docs:** http://localhost:8000/docs
-- **Dashboard:** http://localhost:8501
+---
+
+# 🌐 Access the App
+
+* API Docs → http://localhost:8000/docs
+* Dashboard → http://localhost:8501
+
+👉 Open the dashboard in browser to see:
+
+* attacks
+* blocked vs successful
+* evaluation results
 
 ---
 
-## Architecture
+# 👥 How Teammates Can Use It
 
-```
-src/
-├── llm/
-│   ├── ollama_client.py   # Ollama REST wrapper, retry, streaming
-│   └── victim.py          # Victim LLM (3 system prompt modes)
-├── attacks/
-│   ├── attack_types.py    # Enums + AttackPrompt dataclass
-│   ├── attack_library.py  # 16 curated attacks (4 types)
-│   └── generator.py       # AttackGenerator + adversarial loop
-├── defenses/
-│   ├── base.py            # Abstract base + DefenseResult
-│   ├── rule_based.py      # Regex + keyword detection
-│   ├── prompt_engineering.py  # Sanitization + strict system prompt
-│   ├── llm_guard.py       # Second-LLM classifier (risk 0–1)
-│   └── orchestrator.py    # Runs all defenses, aggregates results
-├── evaluation/
-│   └── scorer.py          # ASR, F1, confusion matrix, model compare
-├── logging/
-│   └── db.py              # SQLite WAL, threadsafe, full query API
-└── api/
-    ├── main.py            # FastAPI app + CORS + lifespan
-    ├── schemas.py         # Pydantic request/response models
-    ├── routes.py          # All endpoints
-    └── simulator.py       # Core pipeline: attack→defense→victim→eval→log
-dashboard/
-└── app.py                 # Streamlit 7-page dashboard
-```
+Each teammate should:
+
+1. Install Ollama
+2. Pull model:
+
+   ```bash
+   ollama pull llama3
+   ```
+3. Clone repo
+4. Install requirements
+5. Run backend + dashboard
+
+⚠️ Important:
+
+* Ollama must be running locally
+* Ports 8000 and 8501 should be free
 
 ---
 
-## Attack Types
+# 📊 Example Flow
 
-| Type | Count | Examples |
-|------|-------|---------|
-| `instruction_override` | 4 | classic_ignore, DAN, role_switch |
-| `jailbreak` | 5 | fictional_framing, base64 obfuscation |
-| `data_exfiltration` | 4 | reveal_system_prompt, training_data_leak |
-| `indirect_injection` | 4 | document_injection, webpage_injection |
-
----
-
-## Defense Strategies
-
-| Strategy | Method | Latency |
-|----------|--------|---------|
-| Rule-based | 12 regex patterns + 8 keyword blocklist | ~0ms |
-| Prompt Engineering | Sanitization + strict system prompt | ~0ms |
-| LLM Guard | Second Ollama model classifies prompt (0–1 risk) | ~1–5s |
+1. System sends attack prompt
+2. Defense checks it
+3. If safe → goes to LLM
+4. If malicious → blocked
+5. Results are logged and shown on dashboard
 
 ---
 
-## API Endpoints
+# 🧠 Project Idea
 
-```
-GET  /api/v1/health                    # Ollama status
-GET  /api/v1/models                    # Available local models
-GET  /api/v1/attacks                   # Attack library listing
-POST /api/v1/defense/evaluate          # Test a prompt against all defenses
-POST /api/v1/simulate                  # Full simulation run
-POST /api/v1/simulate/single           # Single attack test
-POST /api/v1/simulate/adversarial-loop # Auto-mutate until success or exhaustion
-POST /api/v1/simulate/compare-models   # llama3 vs mistral side-by-side
-GET  /api/v1/logs                      # Query attack logs
-GET  /api/v1/logs/runs                 # Run summaries
-```
+This project demonstrates:
+
+* How prompt injection attacks work
+* How simple defenses can reduce risk
+* How to measure LLM security
 
 ---
 
-## Evaluation Metrics
+# ⚠️ Limitations
 
-- **Attack Success Rate (ASR)** — % attacks that got compliant responses
-- **Defense Detection Rate** — % malicious prompts correctly blocked
-- **False Positive Rate** — % benign prompts wrongly blocked
-- **Precision / Recall / F1** — standard classification metrics
-- **Risk Score** — 0–1 continuous score per defense strategy
+* Uses simple rule-based defense
+* Not fully secure (for learning/demo purposes)
+* Can be extended with ML-based detection
 
 ---
 
-## Running Tests
+# 📌 Future Improvements
 
-```bash
-source .venv/bin/activate
-pytest tests/ -v
-```
+* Add ML-based classifier
+* Improve detection rules
+* Add more attack types
+
+---
+
+# 🧑‍💻 Author
+
+Sahojit Karmakar

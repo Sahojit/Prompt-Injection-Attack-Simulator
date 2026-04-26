@@ -1,0 +1,38 @@
+ollama:
+  base_url: "http://localhost:11434"
+  default_model: "llama3"
+  guard_model: "llama3.2:3b"
+  timeout: 120
+  max_retries: 3
+
+models:
+  victim:
+    - llama3
+    - llama3.2:3b
+  guard:
+    - llama3.2:3b
+
+database:
+  path: "data/logs/simulator.db"
+
+logging:
+  level: "INFO"
+  file: "data/logs/app.log"
+
+evaluation:
+  risk_score_threshold: 0.6
+  max_adversarial_iterations: 10
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+
+defense:
+  rule_based:
+    enabled: true
+  prompt_engineering:
+    enabled: true
+  llm_guard:
+    enabled: true
+    threshold: 0.7

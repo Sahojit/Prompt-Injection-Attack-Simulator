@@ -6,9 +6,8 @@ from pydantic import BaseModel, Field
 class RunSimulationRequest(BaseModel):
     model: str = "llama3"
     system_prompt_mode: str = Field("standard", pattern="^(standard|hardened|none)$")
-    attack_types: Optional[list[str]] = None
-    attack_names: Optional[list[str]] = None
-    defense_mode: str = Field("full", pattern="^(full|no_llm|rule_only)$")
+    attack_types: Optional[list[str]] = None  # None = all types
+    attack_names: Optional[list[str]] = None  # specific attacks by name
     run_id: Optional[str] = None
 
 
@@ -32,41 +31,18 @@ class AdversarialLoopRequest(BaseModel):
 
 
 class CompareModelsRequest(BaseModel):
-    models: list[str] = ["llama3", "llama3.2:3b"]
+    models: list[str] = ["llama3", "mistral"]
     system_prompt_mode: str = "standard"
     attack_types: Optional[list[str]] = None
     run_id: Optional[str] = None
-
-
-class BenchmarkRequest(BaseModel):
-    """Defense-ON vs defense-OFF side-by-side comparison."""
-    model: str = "llama3"
-    system_prompt_mode: str = "standard"
-    attack_types: Optional[list[str]] = None
-    defense_mode: str = Field("no_llm", pattern="^(full|no_llm|rule_only)$")
-    run_id: Optional[str] = None
-
-
-class ReplayRequest(BaseModel):
-    """Re-run a previously logged attack by its DB row ID."""
-    log_id: int
-    model: Optional[str] = None
-    defense_mode: str = "full"
 
 
 class DefenseEvaluateRequest(BaseModel):
     prompt: str
 
 
-class DetectRequest(BaseModel):
-    """Unified detect() — risk_score + label + decision + action."""
-    prompt: str
-    defense_mode: str = Field("no_llm", pattern="^(full|no_llm|rule_only)$")
-
-
 class LogQueryRequest(BaseModel):
     run_id: Optional[str] = None
     model: Optional[str] = None
     attack_type: Optional[str] = None
-    risk_tier: Optional[str] = None
     limit: int = Field(100, ge=1, le=1000)

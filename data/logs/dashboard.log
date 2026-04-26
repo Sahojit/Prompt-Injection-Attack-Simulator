@@ -2,7 +2,7 @@
   You can now view your Streamlit app in your browser.
 
   Local URL: http://localhost:8501
-  Network URL: http://172.28.10.99:8501
+  Network URL: http://172.28.11.87:8501
   External URL: http://128.185.168.198:8501
 
   For better performance, install the Watchdog module:
@@ -10,181 +10,94 @@
   $ xcode-select --install
   $ pip install watchdog
             
-2026-04-24 20:29:34.019 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:37.657 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 20:29:34.101 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:37.676 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 23:12:20.785 Uncaught app execution
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
-    result = func()
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
-    exec(code, module.__dict__)  # noqa: S102
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /dashboard/app.py", line 145, in <module>
-    attack_types_list = [t.value for t in __import__("src.attacks.attack_types", fromlist=["AttackType"]).AttackType]
-                                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ModuleNotFoundError: No module named 'src'
-2026-04-24 23:30:26.940 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:37.685 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 23:30:26.989 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:50.083 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 23:37:45.465 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:50.092 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 23:37:45.510 Please replace `use_container_width` with `width`.
+2026-04-26 18:06:50.104 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-04-24 23:37:57.968 Uncaught app execution
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 129, in exec_func_with_error_handling
-    result = func()
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 689, in code_to_exec
-    exec(code, module.__dict__)  # noqa: S102
-    ~~~~^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /dashboard/app.py", line 145, in <module>
-    attack_types_list = [t.value for t in __import__("src.attacks.attack_types", fromlist=["AttackType"]).AttackType]
-                                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ModuleNotFoundError: No module named 'src'
-2026-04-26 13:34:50.383 Uncaught exception in write_error
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 91, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+2026-04-26 18:06:50.115 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1880, in _execute
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 2795, in get
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 106, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:06:52.064 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1380, in send_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 113, in write_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1025, in render
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1171, in render_string
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 446, in load
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 476, in _create_template
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/static/index.html'
-2026-04-26 13:42:55.486 Uncaught exception in write_error
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 91, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:06:52.076 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1880, in _execute
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 2795, in get
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 106, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:06:52.085 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1380, in send_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 113, in write_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1025, in render
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1171, in render_string
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 446, in load
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 476, in _create_template
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/static/index.html'
-2026-04-26 13:43:09.104 Uncaught exception in write_error
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 91, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:08:26.287 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1880, in _execute
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 2795, in get
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 106, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:08:26.327 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1380, in send_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 113, in write_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1025, in render
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1171, in render_string
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 446, in load
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 476, in _create_template
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/static/index.html'
-2026-04-26 13:43:10.854 Uncaught exception in write_error
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 91, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:08:26.365 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1880, in _execute
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 2795, in get
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 106, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:15:29.871 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1380, in send_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 113, in write_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1025, in render
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1171, in render_string
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 446, in load
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 476, in _create_template
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/static/index.html'
-2026-04-26 13:43:16.419 Uncaught exception in write_error
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 91, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:15:29.928 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1880, in _execute
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 2795, in get
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 106, in validate_absolute_path
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 3010, in validate_absolute_path
-tornado.web.HTTPError: HTTP 404: Not Found
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:15:30.018 Please replace `use_container_width` with `width`.
 
-During handling of the above exception, another exception occurred:
+`use_container_width` will be removed after 2025-12-31.
 
-Traceback (most recent call last):
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1380, in send_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/web/server/routes.py", line 113, in write_error
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1025, in render
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/web.py", line 1171, in render_string
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 446, in load
-  File "/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/tornado/template.py", line 476, in _create_template
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/sahojitkarmakar/Documents/Prompt Injection Attack Simulator for LLM Security /.venv/lib/python3.14/site-packages/streamlit/static/index.html'
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:17:44.716 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-04-26 18:17:44.741 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
   Stopping...

@@ -2,8 +2,8 @@ ollama:
   base_url: "http://localhost:11434"
   default_model: "llama3"
   guard_model: "llama3.2:3b"
-  timeout: 120
-  max_retries: 3
+  timeout: 30
+  max_retries: 1
 
 models:
   victim:
@@ -36,3 +36,22 @@ defense:
   llm_guard:
     enabled: true
     threshold: 0.7
+  ml_classifier:
+    enabled: true
+
+  # Weighted ensemble — must sum to 1.0
+  ensemble:
+    weights:
+      rule_based: 0.35
+      llm_guard: 0.45
+      ml_classifier: 0.20
+    # Three-tier risk thresholds (configurable)
+    thresholds:
+      block: 0.70   # score >= block  → BLOCK
+      warn: 0.40    # score >= warn   → WARN
+      # score < warn                  → ALLOW
+
+  # Defense action when tier = BLOCK
+  # Options: hard_block | soft_warn | rewrite | safe_replace
+  block_action: "hard_block"
+  warn_action: "soft_warn"

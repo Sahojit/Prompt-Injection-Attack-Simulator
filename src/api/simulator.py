@@ -1,10 +1,9 @@
 """
 Core simulation pipeline — ties together attack, defense, victim, evaluation, and logging.
+Extended: ensemble scores, risk tiers, defense actions, and baseline mode.
 """
-import uuid
 import logging
-from src.attacks.attack_types import AttackType, AttackPrompt
-from src.attacks.attack_library import ATTACK_LIBRARY
+from src.attacks.attack_types import AttackPrompt
 from src.attacks.generator import AttackGenerator
 from src.defenses.orchestrator import DefenseOrchestrator
 from src.llm.victim import VictimLLM
@@ -26,41 +25,42 @@ class SimulationPipeline:
         system_prompt_mode: str,
         attacks: list[AttackPrompt],
         run_id: str,
+        defense_mode: str = "full",
     ) -> EvaluationReport:
-        orchestrator = DefenseOrchestrator()
+        orchestrator = DefenseOrchestrator(defense_mode=defense_mode)
         victim = VictimLLM(model=model, system_prompt_mode=system_prompt_mode)
         results: list[AttackResult] = []
 
         for attack in attacks:
             try:
-                # 1. Run defense layer
-                defense_result = orchestrator.evaluate(attack.prompt)
+                orch_result = orchestrator.evaluate(attack.prompt)
+                action = orch_result.action
 
-                # 2. Query victim (use sanitized prompt if not blocked)
-                if defense_result.final_blocked:
-                    response_text = "[BLOCKED BY DEFENSE]"
+                # Apply defense action
+                if not action.should_query_llm:
+                    response_text = action.response_override or "[BLOCKED BY DEFENSE]"
                     latency = 0.0
                 else:
-                    prompt_to_send = defense_result.sanitized_prompt or attack.prompt
-                    victim_resp = victim.query(prompt_to_send)
+                    victim_resp = victim.query(action.prompt_to_send)
                     response_text = victim_resp.llm_response.content
                     latency = victim_resp.llm_response.latency_ms
 
-                # 3. Evaluate
                 result = self.evaluator.evaluate_single(
                     attack=attack,
                     response=response_text,
                     model=model,
                     system_prompt_mode=system_prompt_mode,
-                    defense_blocked=defense_result.final_blocked,
-                    defense_risk_score=defense_result.final_risk_score,
+                    defense_blocked=orch_result.final_blocked,
+                    defense_risk_score=orch_result.final_risk_score,
                     latency_ms=latency,
+                    ensemble_scores=orch_result.ensemble_scores,
+                    risk_tier=orch_result.risk_tier,
+                    action_taken=action.action.value,
                 )
                 results.append(result)
 
-                # 4. Log to DB
-                rb_score = defense_result.results.get("rule_based", None)
-                lg_score = defense_result.results.get("llm_guard", None)
+                # Pull per-component scores for DB
+                scores = orch_result.ensemble_scores
                 self.db.log_attack(
                     run_id=run_id,
                     model=model,
@@ -71,23 +71,30 @@ class SimulationPipeline:
                     prompt=attack.prompt,
                     response=response_text,
                     attack_succeeded=result.attack_succeeded,
-                    defense_blocked=defense_result.final_blocked,
-                    defense_risk_score=defense_result.final_risk_score,
-                    defense_strategies=defense_result.blocking_strategies,
-                    rule_based_score=rb_score.risk_score if rb_score else None,
-                    llm_guard_score=lg_score.risk_score if lg_score else None,
+                    defense_blocked=orch_result.final_blocked,
+                    defense_risk_score=orch_result.final_risk_score,
+                    ensemble_score=scores.get("ensemble"),
+                    risk_tier=orch_result.risk_tier,
+                    defense_action=action.action.value,
+                    defense_strategies=orch_result.blocking_strategies,
+                    rule_based_score=scores.get("rule_based"),
+                    ml_classifier_score=scores.get("ml_classifier"),
+                    llm_guard_score=scores.get("llm_guard"),
                     latency_ms=latency,
                     metadata=attack.metadata,
                 )
-                logger.info("Attack '%s' | blocked=%s | succeeded=%s | risk=%.2f",
-                            attack.name, defense_result.final_blocked,
-                            result.attack_succeeded, defense_result.final_risk_score)
+                logger.info(
+                    "Attack '%s' | tier=%s | action=%s | succeeded=%s | risk=%.3f",
+                    attack.name, orch_result.risk_tier,
+                    action.action.value, result.attack_succeeded,
+                    orch_result.final_risk_score,
+                )
 
             except Exception as exc:
                 logger.error("Error processing attack '%s': %s", attack.name, exc)
 
         report = self.evaluator.build_report(results)
-        self.db.log_run_summary(run_id, report.summary(), [model])
+        self.db.log_run_summary(run_id, report.summary(), [model], defense_mode=defense_mode)
 
         victim.close()
         orchestrator.close()
